@@ -1,0 +1,544 @@
+/* ----------- Base ----------- */
+body {
+  margin: 0;
+  font-family: 'Futura', sans-serif;
+  color: #222;
+  background: linear-gradient(135deg, #e0d4ff, #b2d8d8, #ffc6c6);
+  background-attachment: fixed;
+  background-size: cover;
+  transition: background 1s ease;
+}
+
+/* ----------- Navbar ----------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(8px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-family: 'Futura', serif;
+  font-size: 1.4em;
+  line-height: 1.2em;
+  font-weight: 600;
+}
+
+.nav-links a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #222;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #7a5af5;
+}
+
+.nav-links .active {
+  font-weight: 600;
+  color: #5a44c1;
+}
+
+/* ----------- Pages ----------- */
+.page {
+  padding-top: 120px;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.page.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/* ----------- About ----------- */
+.about-content {
+  text-align: center;
+}
+
+.about-content img.portrait {
+  width: 240px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+h2 {
+  font-family: 'Big Caslon', serif;
+  margin-top: 50px;
+  font-weight: 600;
+}
+
+.software-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.software-list li {
+  background: rgba(255,255,255,0.4);
+  padding: 10px 20px;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+}
+.software-strip .software-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px 25px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  font-weight: 600;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.software-strip .software-list li img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 3px rgba(0,0,0,0.15));
+  transition: transform 0.3s ease;
+}
+
+.software-strip .software-list li:hover {
+  background: rgba(255,255,255,0.9);
+  transform: translateY(-4px);
+}
+
+.software-strip .software-list li:hover img {
+  transform: scale(1.1);
+}
+
+/* ----------- Contacts ----------- */
+.contacts {
+  background: linear-gradient(
+    to bottom,
+    rgba(240, 238, 234, 0.95) 0%,
+    rgba(230, 228, 224, 0.95) 100%
+  );
+  backdrop-filter: blur(8px);
+  text-align: center;
+  padding: 80px 20px;
+  margin-top: 100px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.contacts h2 {
+  font-family: 'Big Caslon', serif;
+  margin-bottom: 25px;
+}
+
+.contacts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.contacts li {
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.contacts a {
+  color: #222;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.contacts a:hover {
+  border-color: #222;
+}
+
+/* ----------- Portfolio ----------- */
+.portfolio {
+  text-align: center;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+/* Минимальное управляемое поведение секций */
+.page {
+  padding-top: 120px;
+  max-width: 1100px;
+  margin: 0 auto;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Скрытая секция — ничего не занимает и не влияет на поток */
+.page.hidden {
+  display: none;        /* полностью убирает из потока */
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ----------- Lightbox ----------- */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 10px;
+}
+
+.lightbox .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3em;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+
+.arrow.left { left: 40px; }
+.arrow.right { right: 40px; }
+
+.arrow:hover {
+  opacity: 0.7;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 2.5em;
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.close:hover {
+  opacity: 0.6;
+}
+
+/* ----------- Smooth scrolling ----------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ----------- About: redesigned layout ----------- */
+
+.about-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.about-photo {
+  position: relative;
+  flex: 0 0 300px;
+}
+
+.about-photo img.portrait {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 280px;
+  max-width: 500px;
+}
+
+.about-text h2 {
+  font-family: 'Big Caslon', serif;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  margin-bottom: 18px;
+}
+
+/* ----------- Software strip ----------- */
+
+.software-strip {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(240, 238, 234, 0.95) 100%
+  );
+  backdrop-filter: blur(10px);
+  text-align: center;
+  padding: 60px 20px;
+  margin-top: -15px;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.software-strip h2 {
+  font-family: 'Big Caslon', serif;
+  margin-bottom: 30px;
+}
+
+.software-strip .software-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.software-strip .software-list li {
+  padding: 12px 25px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  font-weight: 600;
+}
+
+/* ----------- Gallery basic layout ----------- */
+/* Gallery: grid и карточки (работает с .gallery-item как div) */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 40px 0;
+  align-items: start;
+}
+
+.gallery-item {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: transform 0.32s cubic-bezier(.2,.9,.2,1), box-shadow 0.32s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* hover zoom */
+.gallery-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.14);
+}
+
+/* Load more button */
+#load-more {
+  display: inline-block;
+  margin: 28px auto 40px;
+  padding: 12px 32px;
+  border-radius: 28px;
+  border: none;
+  background: #efecec;
+  color: #222;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Bottom banner stays in flow (не fixed) — чтобы смещаться вниз при добавлении контента */
+/* НИЖНЯЯ ПЛАШКА */
+.bottom-banner {
+  position: relative;
+  width: 100vw; /* на всю ширину экрана */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  display: flex;
+  justify-content: flex-end; /* текст и индеец справа */
+  align-items: center;
+  gap: 40px;
+  padding: 2px 80px 40px;
+  font-family: "Futura", serif;
+  color: #111;
+  border-top: 2px solid #ddd;
+  overflow: hidden;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+/* ТЕКСТ */
+.bottom-banner p {
+  font-size: 28px;
+  line-height: 1.3em;
+  font-weight: 600;
+  max-width: 500px;
+  text-align: right;
+  margin: 0;
+}
+
+.bottom-banner .highlight-link {
+  color: #c78b30;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.bottom-banner .highlight-link:hover {
+  color: #e4aa54;
+}
+
+/* МОДЕЛЬ ИНДЕЙЦА */
+.indian-model {
+  position: relative;
+  width: 260px; /* крупнее */
+  transform: translateY(100px); /* слегка выходит вниз */
+  transition: transform 0.5s ease;
+  z-index: 1;
+}
+
+.indian-model:hover {
+  transform: scale(1.02) translateY(100px);
+}
+
+/* Для адаптивности */
+@media (max-width: 900px) {
+  .bottom-banner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .bottom-banner p {
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .indian-model {
+    width: 200px;
+    transform: translateY(20px);
+  }
+
+  .indian-model:hover {
+    transform: scale(1.08) translateY(20px);
+  }
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(6,6,6,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.lightbox .lb-img {
+  max-width: 92%;
+  max-height: 86%;
+  border-radius: 10px;
+  display: block;
+}
+.lightbox .lb-close {
+  position: fixed; top: 24px; right: 28px;
+  font-size: 34px; color: #fff; cursor: pointer;
+}
+.lightbox .lb-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 48px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+.lightbox .lb-arrow.left { left: 26px; }
+.lightbox .lb-arrow.right { right: 26px; }
+
+/* small responsive tweak */
+@media (max-width: 700px) {
+  .gallery { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .indian-model { width: 120px; }
+}
