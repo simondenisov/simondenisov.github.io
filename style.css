@@ -542,3 +542,23 @@ html {
   .gallery { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   .indian-model { width: 120px; }
 }
+
+.language-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.language-toggle img {
+  width: 26px;
+  height: 24px;
+  border-radius: 3px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
+.language-toggle:hover {
+  transform: scale(1.1);
+}
