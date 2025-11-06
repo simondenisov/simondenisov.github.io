@@ -70,19 +70,46 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentIndex = 0;
 
   // делегирование кликов по галерее: откроет lightbox и загрузит вариации
-  gallery.addEventListener('click', (e) => {
-    const item = e.target.closest('.gallery-item');
-    if (!item) return;
 
-    // получаем variants из data-атрибута (разделитель запятая)
-    const raw = item.dataset.variants || '';
-    if (!raw) return;
-    currentVariants = raw.split(',').map(s => s.trim()).filter(Boolean);
-    currentIndex = 0;
-    showLBImage();
-    lb.classList.add('active');
-    document.body.style.overflow = 'hidden';
+gallery.addEventListener('click', (e) => {
+  const item = e.target.closest('.gallery-item');
+  if (!item) return;
+
+  // получаем variants из data-атрибута (разделитель запятая)
+  const raw = item.dataset.variants || '';
+  if (!raw) return;
+
+  // разбиваем пути, фильтруем только реально существующие изображения
+  const allVariants = raw.split(',').map(s => s.trim()).filter(Boolean);
+  currentVariants = [];
+
+  let loadedCount = 0;
+  allVariants.forEach(src => {
+    const img = new Image();
+    img.onload = () => {
+      currentVariants.push(src);
+      loadedCount++;
+      // когда всё проверено — показываем
+      if (loadedCount === allVariants.length && currentVariants.length > 0) {
+        currentIndex = 0;
+        showLBImage();
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+    img.onerror = () => {
+      loadedCount++;
+      // если все проверены, но часть не загрузилась — показываем те, что остались
+      if (loadedCount === allVariants.length && currentVariants.length > 0) {
+        currentIndex = 0;
+        showLBImage();
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+    img.src = src;
   });
+});
 
   function showLBImage() {
     if (!currentVariants.length) return;
@@ -170,5 +197,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
   });
+
+// ---------- LANGUAGE SWITCHER ----------
+const flagIcon = document.getElementById('flag-icon');
+
+// Тексты на двух языках
+const languageData = {
+  en: {
+    aboutLink: "about me",
+    portfolioLink: "portfolio",
+    contactsLink: "contacts",
+
+    aboutTitle: "About me",
+    aboutParagraphs: [
+      "My name is <strong>Simon Denisov</strong>. Since the age of 14, I have been self-studying various 3D software packages and developing in the field of computer graphics.",
+      "At 23, I began to study the profession more deeply, completed specialized courses, and started creating game-ready 3D assets and characters for sale on stock platforms.",
+      "When creating models, I go through the entire production pipeline — from researching and analyzing references to modeling, UV unwrapping, rendering, and post-processing.",
+      "I have experience working in a 3D studio, where I was involved in developing models for game projects. I continuously improve my skills and keep up with the latest trends in the industry."
+    ],
+
+    softwareTitle: "Software proficiency",
+    contactsTitle: "Contacts",
+
+    bottomBanner: 'You can purchase all my models on <a href="https://www.turbosquid.com/Search/Artists/Simon_Green" target="_blank" class="highlight-link">TurboSquid!</a>'
+  },
+
+  ru: {
+    aboutLink: "обо мне",
+    portfolioLink: "портфолио",
+    contactsLink: "контакты",
+
+    aboutTitle: "Обо мне",
+    aboutParagraphs: [
+      "Меня зовут <strong>Симеон Денисов</strong>. С 14 лет я самостоятельно изучал различные 3D-пакеты и развивался в сфере компьютерной графики.",
+      "В 23 года я начал углублённо изучать профессию, прошёл специализированные курсы и стал создавать игровые 3D-ассеты и персонажей для продажи на стоковых площадках.",
+      "Во время создания моделей я прохожу весь цикл — от поиска и анализа референсов до моделирования, UV-развёртки, рендеринга и постобработки.",
+      "У меня есть опыт работы в 3D-студии, где я занимался разработкой моделей для игровых проектов. Я постоянно совершенствую свои навыки и слежу за современными тенденциями в индустрии."
+    ],
+
+    softwareTitle: "Программные навыки",
+    contactsTitle: "Контакты",
+
+    bottomBanner: 'Вы можете приобрести все мои модели на <a href="https://www.turbosquid.com/Search/Artists/Simon_Green" target="_blank" class="highlight-link">TurboSquid!</a>'
+  }
+};
+
+let currentLang = 'en';
+
+flagIcon.addEventListener('click', () => {
+  currentLang = currentLang === 'en' ? 'ru' : 'en';
+  updateLanguage();
+});
+
+function updateLanguage() {
+  const data = languageData[currentLang];
+
+  // Меню
+  document.querySelector('.nav-link[data-page="about"]').textContent = data.aboutLink;
+  document.querySelector('.nav-link[data-page="portfolio"]').textContent = data.portfolioLink;
+  document.querySelector('.nav-link[data-page="contacts"]').textContent = data.contactsLink;
+
+  // Блок "About me"
+  document.querySelector('#about h2').textContent = data.aboutTitle;
+
+  const aboutParagraphs = document.querySelectorAll('#about .about-text p');
+  aboutParagraphs.forEach((p, i) => {
+    if (data.aboutParagraphs[i]) {
+      p.innerHTML = data.aboutParagraphs[i];
+    }
+  });
+
+  // Блок "Software proficiency"
+  document.querySelector('.software-strip h2').textContent = data.softwareTitle;
+
+  // Контакты
+  document.querySelector('.contacts h2').textContent = data.contactsTitle;
+
+  // Нижняя надпись
+  document.querySelector('.bottom-banner p').innerHTML = data.bottomBanner;
+
+  // Смена флага
+  flagIcon.src = currentLang === 'en' ? 'images/flag_ru.png' : 'images/flag_us.png';
+}
 
 });
