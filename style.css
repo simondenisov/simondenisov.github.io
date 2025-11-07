@@ -664,3 +664,25 @@ html {
   p {
     font-size: 14px;
   }
+  /* --- Мобильная версия: плашка под текст About me --- */
+@media (max-width: 768px) {
+  .about-wrapper {
+    position: relative;
+    margin-top: -50px; /* немного поднимаем, чтобы фото заходило на плашку */
+    z-index: 2;
+  }
+
+  .about-card {
+    background: rgba(255, 255, 255, 0.85); /* белая полупрозрачная плашка */
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+  }
+
+  /* немного сместим фото вниз, чтобы оно "уходило" за плашку */
+  .about-photo img {
+    transform: translateY(40px);
+  }
+}
