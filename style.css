@@ -562,3 +562,105 @@ html {
 .language-toggle:hover {
   transform: scale(1.1);
 }
+
+/* ---------- АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ ---------- */
+@media (max-width: 1024px) {
+  .about-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-photo img {
+    width: 240px;
+  }
+
+  .about-text {
+    max-width: 90%;
+  }
+
+  .software-strip {
+    text-align: center;
+  }
+}
+
+/* ---------- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ---------- */
+@media (max-width: 768px) {
+  /* навигация */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 20px;
+    line-height: 1.1em;
+  }
+
+  /* портфолио */
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  /* уменьшить кнопки */
+  #load-more {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  /* контакты */
+  .contacts ul {
+    padding-left: 0;
+    list-style: none;
+    text-align: center;
+  }
+
+  /* нижний баннер */
+  .bottom-banner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .indian-model {
+    width: 160px;
+    margin-bottom: 10px;
+  }
+
+  /* флаг */
+  .language-toggle {
+    top: 10px;
+    right: 10px;
+  }
+
+  .language-toggle img {
+    width: 28px;
+    height: 18px;
+  }
+}
+
+/* ---------- ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ ---------- */
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .about-photo img {
+    width: 200px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px;
+  }
