@@ -683,6 +683,6 @@ html {
 
   /* немного сместим фото вниз, чтобы оно "уходило" за плашку */
   .about-photo img {
-    transform: translateY(30px);
+    transform: translateY(10px);
   }
 }
