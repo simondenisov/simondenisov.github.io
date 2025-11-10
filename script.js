@@ -1,40 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------- NAVIGATION (надежная, проверенная) ---------- */
+  /* ---------- NAVIGATION (финальная, рабочая версия) ---------- */
   const links = document.querySelectorAll('.nav-link');
   const pages = document.querySelectorAll('.page');
+  const softwareStrip = document.querySelector('.software-strip');
+  const contactsBlock = document.querySelector('.contacts');
 
-  // на старте показываем только первую страницу (about)
+  // На старте показываем только первую страницу (about)
   pages.forEach((p, idx) => { if (idx !== 0) p.classList.add('hidden'); });
+
+  // На старте показываем плашки
+  softwareStrip.style.display = 'block';
+  contactsBlock.style.display = 'block';
 
   links.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.dataset.page;
 
-      // active state for nav
+      // Активное состояние для навигации
       links.forEach(l => l.classList.remove('active'));
       link.classList.add('active');
 
-        // Показываем нужную страницу
+      // Прячем все страницы
       pages.forEach(p => p.classList.add('hidden'));
       const targetPage = document.getElementById(targetId);
       if (targetPage) targetPage.classList.remove('hidden');
 
-      // Специальные случаи — прокрутка и возврат
+      // --- Управление видимостью плашек ---
+      if (targetId === 'about' || targetId === 'contacts') {
+        softwareStrip.style.display = 'block';
+        contactsBlock.style.display = 'block';
+      } else {
+        softwareStrip.style.display = 'none';
+        contactsBlock.style.display = 'none';
+      }
+
+      // --- Специальные случаи ---
       if (targetId === 'contacts') {
         const about = document.getElementById('about');
         about.classList.remove('hidden');
+
+        // Делаем плавный скролл до секции контактов
         setTimeout(() => {
-          const contactEl = document.querySelector('.contacts');
-          if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
+          contactsBlock.scrollIntoView({ behavior: 'smooth' });
         }, 40);
         return;
       }
 
       if (targetId === 'about') {
-        const about = document.getElementById('about');
-        about.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
@@ -44,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
 
 
   /* ---------- GALLERY + LIGHTBOX (delegation) ---------- */
