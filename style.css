@@ -492,7 +492,7 @@ html {
 
   .indian-model {
     width: 350px;
-    transform: translateY(100px);
+    transform: translateY(80px);
   }
 
   .indian-model:hover {
@@ -584,7 +584,7 @@ html {
 
   /* немного сместим фото вниз, чтобы оно "уходило" за плашку */
   .about-photo img {
-    transform: translateY(155px);
+    transform: translateY(125px);
   }
 
   /* Исправленный блок для растяжения плашек */
