@@ -132,6 +132,11 @@ h2 {
 
 /* ----------- Contacts ----------- */
 .contacts {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
   background: linear-gradient(
     to bottom,
     rgba(240, 238, 234, 0.95) 0%,
@@ -139,12 +144,8 @@ h2 {
   );
   backdrop-filter: blur(8px);
   text-align: center;
-  padding: 80px 20px;
+  padding: 60px 20px;
   margin-top: 100px;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   border-top: 1px solid rgba(0,0,0,0.08);
 }
 
@@ -330,6 +331,11 @@ html {
 /* ----------- Software strip ----------- */
 
 .software-strip {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.9) 0%,
@@ -339,13 +345,9 @@ html {
   text-align: center;
   padding: 60px 20px;
   margin-top: -15px;
-  position: relative;
   z-index: 1;
   border-top: 1px solid rgba(0,0,0,0.05);
   border-bottom: 1px solid rgba(0,0,0,0.08);
-  width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .software-strip h2 {
@@ -563,108 +565,7 @@ html {
   transform: scale(1.1);
 }
 
-/* ---------- АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ ---------- */
-@media (max-width: 1024px) {
-  .about-wrapper {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .about-photo img {
-    width: 240px;
-  }
-
-  .about-text {
-    max-width: 90%;
-  }
-
-  .software-strip {
-    text-align: center;
-  }
-}
-
-/* ---------- АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ---------- */
-@media (max-width: 768px) {
-  /* навигация */
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo {
-    font-size: 20px;
-    line-height: 1.1em;
-  }
-
-  /* портфолио */
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-
-  /* уменьшить кнопки */
-  #load-more {
-    width: 80%;
-    font-size: 14px;
-  }
-
-  /* контакты */
-  .contacts ul {
-    padding-left: 0;
-    list-style: none;
-    text-align: center;
-  }
-
-  /* нижний баннер */
-  .bottom-banner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .indian-model {
-    width: 160px;
-    margin-bottom: 10px;
-  }
-
-  /* флаг */
-  .language-toggle {
-    top: 10px;
-    right: 10px;
-  }
-
-  .language-toggle img {
-    width: 28px;
-    height: 18px;
-  }
-}
-
-/* ---------- ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ ---------- */
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .about-photo img {
-    width: 200px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  p {
-    font-size: 14px;
-  }
-  /* --- Мобильная версия: плашка под текст About me --- */
+/* --- Мобильная версия: плашка под текст About me --- */
 @media (max-width: 768px) {
   .about-wrapper {
     position: relative;
@@ -684,5 +585,15 @@ html {
   /* немного сместим фото вниз, чтобы оно "уходило" за плашку */
   .about-photo img {
     transform: translateY(10px);
+  }
+
+  /* Исправленный блок для растяжения плашек */
+  .software-strip,
+  .contacts {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 !important;
   }
 }
