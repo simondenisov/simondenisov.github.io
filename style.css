@@ -584,7 +584,7 @@ html {
 
   /* немного сместим фото вниз, чтобы оно "уходило" за плашку */
   .about-photo img {
-    transform: translateY(200px);
+    transform: translateY(250px);
   }
 
   /* Исправленный блок для растяжения плашек */
