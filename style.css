@@ -491,7 +491,7 @@ html {
   }
 
   .indian-model {
-    width: 350px;
+    width: 400px;
     transform: translateY(80px);
   }
 
@@ -584,7 +584,7 @@ html {
 
   /* немного сместим фото вниз, чтобы оно "уходило" за плашку */
   .about-photo img {
-    transform: translateY(125px);
+    transform: translateY(100px);
   }
 
   /* Исправленный блок для растяжения плашек */
