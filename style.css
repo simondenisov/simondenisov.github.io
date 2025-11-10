@@ -491,8 +491,8 @@ html {
   }
 
   .indian-model {
-    width: 200px;
-    transform: translateY(40px);
+    width: 260px;
+    transform: translateY(200px);
   }
 
   .indian-model:hover {
