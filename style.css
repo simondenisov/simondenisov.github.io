@@ -569,7 +569,7 @@ html {
 @media (max-width: 768px) {
   .about-wrapper {
     position: relative;
-    margin-top: -70px; /* немного поднимаем, чтобы фото заходило на плашку */
+    margin-top: -80px; /* немного поднимаем, чтобы фото заходило на плашку */
     z-index: 2;
   }
 
@@ -584,7 +584,7 @@ html {
 
   /* немного сместим фото вниз, чтобы оно "уходило" за плашку */
   .about-photo img {
-    transform: translateY(150px);
+    transform: translateY(200px);
   }
 
   /* Исправленный блок для растяжения плашек */
